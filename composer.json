@@ -1,0 +1,14 @@
+{
+  "name": "inkar/todolist",
+  "autoload": {
+    "psr-4": {
+      "Inkar\\Todolist\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "inkar mussa"
+    }
+  ],
+  "require": {}
+}
