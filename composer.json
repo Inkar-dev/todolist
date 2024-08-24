@@ -2,7 +2,7 @@
   "name": "inkar/todolist",
   "autoload": {
     "psr-4": {
-      "Inkar\\Todolist\\": "src/"
+      "App\\": "src/"
     }
   },
   "authors": [
@@ -10,5 +10,7 @@
       "name": "inkar mussa"
     }
   ],
-  "require": {}
+  "require": {
+    "nikic/fast-route": "^1.3"
+  }
 }
