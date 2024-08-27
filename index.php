@@ -4,9 +4,25 @@
 require './vendor/autoload.php';
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/test', function (){
+    $r->addRoute('GET', '/', function (){
         $controller = new \App\Controllers\HomeController();
         $controller->index();
+    });
+    $r->addRoute('POST', '/create-task', function (){
+        $controller = new \App\Controllers\TaskController();
+        $controller->createTask();
+    });
+    $r->addRoute('POST', '/delete-task/{id}', function ($id){
+        $controller = new \App\Controllers\TaskController();
+        $controller->deleteTask($id);
+    });
+    $r->addRoute('GET', '/edit-task/{id}', function ($id){
+        $controller = new \App\Controllers\TaskController();
+        $controller->editTask($id);
+    });
+    $r->addRoute('POST', '/update-task/{id}', function ($id){
+        $controller = new \App\Controllers\TaskController();
+        $controller->updateTask($id);
     });
 
 });
