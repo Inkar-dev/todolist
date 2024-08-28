@@ -3,6 +3,8 @@
 
 require './vendor/autoload.php';
 
+session_start();
+
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', function (){
         $controller = new \App\Controllers\HomeController();
@@ -23,6 +25,14 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute('POST', '/update-task/{id}', function ($id){
         $controller = new \App\Controllers\TaskController();
         $controller->updateTask($id);
+    });
+    $r->addRoute('GET', '/register', function (){
+        $controller = new \App\Controllers\RegisterController();
+        $controller->index();
+    });
+    $r->addRoute('POST', '/register', function (){
+        $controller = new \App\Controllers\RegisterController();
+        $controller->register();
     });
 
 });
