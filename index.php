@@ -34,6 +34,14 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
         $controller = new \App\Controllers\RegisterController();
         $controller->register();
     });
+    $r->addRoute('GET', '/login', function (){
+        $controller = new \App\Controllers\LoginController();
+        $controller->index();
+    });
+    $r->addRoute('POST', '/login', function (){
+        $controller = new \App\Controllers\LoginController();
+        $controller->login();
+    });
 
 });
 
