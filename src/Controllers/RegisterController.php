@@ -11,7 +11,6 @@ class RegisterController
     public function index() {
         $RegisterView=new Register();
         $RegisterView->render();
-
     }
     public function register() {
         if($_POST) {
