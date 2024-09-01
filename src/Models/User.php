@@ -20,4 +20,18 @@ class User
         $sth->execute([':email' => $email, ':password' => password_hash($password, PASSWORD_DEFAULT)]);
     }
 
+    public function loginUser($email)
+    {
+        $sth = $this->stmt->prepare(
+            'SELECT * FROM users WHERE email = :email'
+        );
+
+        $sth->execute([':email' => $email]);
+
+        $user = $sth->fetch();
+
+        return $user;
+
+    }
+
 }
