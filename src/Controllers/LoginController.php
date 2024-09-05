@@ -5,9 +5,13 @@ namespace App\Controllers;
 use App\Models\User;
 use App\Views\Login;
 
-class LoginController
-
+class LoginController extends BaseController
 {
+    public function __construct()
+    {
+        parent::notCheckUserAuth();
+    }
+
     public function index() {
         $LoginView = new Login();
         $LoginView -> render();
@@ -41,9 +45,15 @@ class LoginController
            unset($user['password']);
 
            $_SESSION['user'] = $user;
+           $_SESSION['user_id'] = $user['id'];
            $_SESSION['alert']['success'] = "Успешно вошли";
            header("location:/");
         }
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['user']);
     }
 
 }
