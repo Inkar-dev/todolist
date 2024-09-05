@@ -5,10 +5,12 @@ namespace App\Controllers;
 use App\Models\Task;
 use App\Views\TaskDetail;
 
-class TaskController
+class TaskController extends BaseController
 {
     private $taskModel;
-    public function __construct(){
+    public function __construct()
+    {
+        parent::checkAuth();
         $this->taskModel = new Task();
     }
     public function createTask()
@@ -16,8 +18,9 @@ class TaskController
         if ($_POST) {
             $name = $_POST['name'];
             $description = $_POST['description'];
+            $user_id = $_SESSION['user_id'];
 
-            $this->taskModel->createTasks($name, $description);
+            $this->taskModel->createTasks($name, $description, $user_id);
 
             header('Location: ' . $_SERVER["HTTP_REFERER"]);
         }
