@@ -9,6 +9,11 @@ class Home extends Base
 {
     {
         ?>
+        <style>
+            body {
+                background-color: #d4edda; /* Выберите цвет фона, например светло-голубой */
+            }
+        </style>
         <div class="container">
               <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Create task</button>
