@@ -21,18 +21,19 @@ class Task
 
     public function getTasks()
     {
-        $sth = $this->stmt->prepare("Select id, name, description, created_at from tasks");
+        $sth = $this->stmt->prepare("Select id, name, description, created_at from tasks where user_id = :user_id");
+        $sth->execute([':user_id' => $_SESSION['user_id']]);
         $sth->execute();
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function createTasks($name, $description)
+    public function createTasks($name, $description, $user_id)
     {
         $sth = $this->stmt->prepare(
-            'INSERT INTO tasks(name,description) VALUES(:name, :description)'
+            'INSERT INTO tasks(name,description, user_id) VALUES(:name, :description, :user_id)'
         );
 
-        $sth->execute([':name' => $name, ':description' => $description]);
+        $sth->execute([':name' => $name, ':description' => $description, ':user_id' => $user_id]);
     }
 
     public function updateTask($id, $name, $description)
